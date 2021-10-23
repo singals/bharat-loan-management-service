@@ -1,5 +1,6 @@
 package com.blms;
 
+import com.blms.health.BlmsHealthCheck;
 import com.blms.resources.PingResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
@@ -17,10 +18,10 @@ public class BlmsApp extends Application<BlmsConfig> {
   @Override
   public void run(BlmsConfig config, Environment env) {
     try{
+      env.healthChecks().register("healthCheck", new BlmsHealthCheck());
       env.jersey().register(new PingResource());
     }catch (Exception ex){
       LOGGER.error("Unhandled error", ex);
     }
-
   }
 }
