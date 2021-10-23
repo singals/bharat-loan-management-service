@@ -9,4 +9,4 @@ loan accounts, monitor EMI schedule etc.
 - Gradle
 
 ## Running the application
-- 
+- `./gradlew clean run --args="server"`
