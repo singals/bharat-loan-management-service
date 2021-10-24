@@ -1,7 +1,5 @@
-package com.blms.resources;
+package com.blms.ping;
 
-import com.codahale.metrics.annotation.Metered;
-import com.codahale.metrics.annotation.Timed;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;

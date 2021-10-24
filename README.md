@@ -1,12 +1,21 @@
 # Bharat Loan Management Service
 
-## Concept
+### Functional Concept
 This application is for micro and small loan providers and provide a platform to manage customers, 
 loan accounts, monitor EMI schedule etc.
 
-## Prerequisites
+### Tech
+
+##### Prerequisites
 - Java 11
 - Gradle
+- Postgres
 
-## Running the application
-- `./gradlew clean run --args="server"`
+##### Running tests
+- `./gradlew clean test`
+
+##### Running the application
+- `./gradlew clean run --args="server config.yml"`
+
+##### Running migration
+- `./gradlew clean run --args="db migrate config.yml"`
