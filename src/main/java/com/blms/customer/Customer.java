@@ -4,8 +4,11 @@ import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +16,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "customers")
+@NamedQueries({@NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")})
 public class Customer {
   @Id private UUID id;
 
@@ -49,7 +54,7 @@ public class Customer {
 
   public static Customer from(CustomerDto customerDto) {
     return new Customer(
-        UUID.randomUUID(),
+        customerDto.getId() == null ? UUID.randomUUID() : UUID.fromString(customerDto.getId()),
         customerDto.getFirstName(),
         customerDto.getLastName(),
         customerDto.getMiddleName(),
@@ -58,7 +63,7 @@ public class Customer {
         customerDto.getPermanentAddress(),
         customerDto.getTemporaryAddress(),
         customerDto.getLinkToFolderWithDocuments(),
-        customerDto.getIsActive(),
-        customerDto.getIsBlacklisted());
+        customerDto.getIsActive() == null || customerDto.getIsActive(),
+        customerDto.getIsBlacklisted() != null && customerDto.getIsBlacklisted());
   }
 }

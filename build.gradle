@@ -24,6 +24,7 @@ dependencies {
 
     testImplementation group: 'io.dropwizard', name: 'dropwizard-testing', version: '2.1.0-beta.4'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.0.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
