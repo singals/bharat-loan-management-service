@@ -1,5 +1,6 @@
 package com.blms.customer;
 
+import com.blms.BlmsBaseEntity;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,13 +14,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Builder
 @Table(name = "customers")
 @NamedQueries({@NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")})
-public class Customer {
+public class Customer implements BlmsBaseEntity {
   @Id private UUID id;
 
   @Column(name = "first_name")

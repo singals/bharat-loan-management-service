@@ -1,5 +1,6 @@
 package com.blms.testutils;
 
+import com.blms.account.AccountDto;
 import com.blms.customer.Customer;
 import com.blms.customer.CustomerDto;
 import java.util.UUID;
@@ -19,6 +20,10 @@ public class TestUtils {
         .isActive(true)
         .isBlacklisted(false)
         .build();
+  }
+
+  public static AccountDto getAccountDto() {
+    return AccountDto.builder().number(5l).holder(CustomerDto.from(getCustomer())).build();
   }
 
   public static Customer getCustomer() {

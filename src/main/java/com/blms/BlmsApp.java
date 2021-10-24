@@ -1,5 +1,7 @@
 package com.blms;
 
+import com.blms.account.AccountDAO;
+import com.blms.account.AccountResource;
 import com.blms.config.DbBundle;
 import com.blms.customer.CustomerDAO;
 import com.blms.customer.CustomerResource;
@@ -42,10 +44,12 @@ public class BlmsApp extends Application<BlmsConfig> {
   public void run(BlmsConfig config, Environment env) {
     try {
       CustomerDAO customerDAO = new CustomerDAO(dbConfigBundle.getSessionFactory());
+      AccountDAO accountDAO = new AccountDAO(dbConfigBundle.getSessionFactory());
 
       env.healthChecks().register("healthCheck", new BlmsHealthCheck());
       env.jersey().register(new PingResource());
       env.jersey().register(new CustomerResource(customerDAO));
+      env.jersey().register(new AccountResource(accountDAO, customerDAO));
     } catch (Exception ex) {
       LOGGER.error("Unhandled error", ex);
     }

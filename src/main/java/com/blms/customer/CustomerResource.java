@@ -25,6 +25,7 @@ public class CustomerResource {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public CustomerDto createCustomer(@Valid CustomerDto customerDto) {
+    // TODO: add validation to check any existing customer by mobile number
     Customer customer = Customer.from(customerDto);
     customerDAO.create(customer);
     return CustomerDto.from(customer);
