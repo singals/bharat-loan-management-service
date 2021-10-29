@@ -3,7 +3,8 @@ package com.blms.account;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import com.blms.customer.Customer;
+import com.blms.account.loan.LoanAccount;
+import com.blms.account.loan.LoanAccountDto;
 import com.blms.testutils.TestUtils;
 import java.util.UUID;
 import org.junit.jupiter.api.AfterEach;
@@ -11,30 +12,30 @@ import org.junit.jupiter.api.Test;
 
 class AccountTest {
 
-  private AccountDto accountDto;
-  private Account account;
+  private LoanAccountDto loanAccountDto;
+  private LoanAccount loanAccount;
 
   @AfterEach
   void tearDown() {
-    accountDto = null;
-    account = null;
+    loanAccountDto = null;
+    loanAccount = null;
   }
 
   @Test
   void testAccountFromDto() {
-    accountDto = TestUtils.getAccountDto();
-    account = Account.from(accountDto);
-    assertNotNull(account.getId());
-    assertEquals(accountDto.getNumber(), account.getNumber());
-    assertEquals(accountDto.getCustomerId(), account.getCustomerId().toString());
+    loanAccountDto = TestUtils.getAccountDto();
+    loanAccount = LoanAccount.from(loanAccountDto);
+    assertNotNull(loanAccount.getId());
+    assertEquals(loanAccountDto.getNumber(), loanAccount.getNumber());
+    assertEquals(loanAccountDto.getCustomerId(), loanAccount.getCustomerId().toString());
   }
 
   @Test
   void testAccountFromDtoWhenIdIsProvided() {
     String id = UUID.randomUUID().toString();
-    accountDto = TestUtils.getAccountDto();
-    accountDto.setId(id);
-    account = Account.from(accountDto);
-    assertEquals(id, account.getId().toString());
+    loanAccountDto = TestUtils.getAccountDto();
+    loanAccountDto.setId(id);
+    loanAccount = LoanAccount.from(loanAccountDto);
+    assertEquals(id, loanAccount.getId().toString());
   }
 }

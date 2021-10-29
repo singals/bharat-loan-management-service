@@ -2,6 +2,7 @@ package com.blms.account;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.blms.account.loan.LoanAccountDto;
 import com.blms.customer.Customer;
 import com.blms.testutils.TestUtils;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AccountDtoTest {
+class LoanAccountDtoTest {
 
   private ObjectMapper mapper;
 
@@ -23,16 +24,16 @@ class AccountDtoTest {
   @Test
   void testJsonParsing() throws JsonProcessingException {
     String json = "{\"customer_id\":\"aa7cf47a-7b46-4aff-816e-0f9c43d563ef\"}";
-    AccountDto accountDto = mapper.readValue(json, AccountDto.class);
+    LoanAccountDto loanAccountDto = mapper.readValue(json, LoanAccountDto.class);
 
-    assertEquals("aa7cf47a-7b46-4aff-816e-0f9c43d563ef", accountDto.getCustomerId());
+    assertEquals("aa7cf47a-7b46-4aff-816e-0f9c43d563ef", loanAccountDto.getCustomerId());
   }
 
   @Test
   void testMappingFromAccount() throws JsonProcessingException {
     Customer customer = TestUtils.getCustomer();
     customer.setId(null);
-    AccountDto account = AccountDto.builder().number(7l).build();
+    LoanAccountDto account = LoanAccountDto.builder().number(7l).build();
 
 
     String json = mapper.writeValueAsString(account);

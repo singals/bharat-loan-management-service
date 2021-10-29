@@ -1,5 +1,8 @@
-package com.blms.account;
+package com.blms.account.loan;
 
+import com.blms.account.loan.LoanAccount;
+import com.blms.account.loan.LoanAccountDAO;
+import com.blms.account.loan.LoanAccountDto;
 import com.blms.customer.Customer;
 import com.blms.customer.CustomerDAO;
 import io.dropwizard.hibernate.UnitOfWork;
@@ -16,14 +19,14 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/accounts")
-public class AccountResource {
+@Path("/loan-accounts")
+public class LoanAccountResource {
 
-  private final AccountDAO accountDAO;
+  private final LoanAccountDAO loanAccountDAO;
   private final CustomerDAO customerDAO;
 
-  public AccountResource(AccountDAO accountDAO, CustomerDAO customerDAO) {
-    this.accountDAO = accountDAO;
+  public LoanAccountResource(LoanAccountDAO loanAccountDAO, CustomerDAO customerDAO) {
+    this.loanAccountDAO = loanAccountDAO;
     this.customerDAO = customerDAO;
   }
 
@@ -31,25 +34,25 @@ public class AccountResource {
   @UnitOfWork
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public AccountDto createAccount(@Valid AccountDto accountDto) {
+  public LoanAccountDto createAccount(@Valid LoanAccountDto loanAccountDto) {
     Customer customer =
         customerDAO
-            .getById(UUID.fromString(accountDto.getCustomerId()))
+            .getById(UUID.fromString(loanAccountDto.getCustomerId()))
             .orElseThrow(() -> new WebApplicationException(Response.status(412).build()));
     if (!customer.getIsActive() || customer.getIsBlacklisted()) {
       throw new WebApplicationException(Response.status(412).build());
     }
-    Account account = Account.from(accountDto);
-    accountDAO.create(account);
-    account = accountDAO.getById(account.getId()).get();
-    return AccountDto.from(account);
+    LoanAccount loanAccount = LoanAccount.from(loanAccountDto);
+    loanAccountDAO.create(loanAccount);
+    loanAccount = loanAccountDAO.getById(loanAccount.getId()).get();
+    return LoanAccountDto.from(loanAccount);
   }
 
   @GET
   @UnitOfWork
   @Produces(MediaType.APPLICATION_JSON)
-  public List<AccountDto> getAllAccounts() {
-    List<Account> accounts = accountDAO.getAll();
-    return accounts.stream().map(AccountDto::from).collect(Collectors.toList());
+  public List<LoanAccountDto> getAllAccounts() {
+    List<LoanAccount> loanAccounts = loanAccountDAO.getAll();
+    return loanAccounts.stream().map(LoanAccountDto::from).collect(Collectors.toList());
   }
 }

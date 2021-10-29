@@ -1,6 +1,6 @@
 package com.blms.customer;
 
-import com.blms.account.AccountDto;
+import com.blms.account.loan.LoanAccountDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -43,7 +43,7 @@ public class CustomerDto {
 
   private Boolean isBlacklisted;
 
-  private List<AccountDto> accounts;
+  private List<LoanAccountDto> accounts;
 
   public static CustomerDto from(Customer customer) {
     return new CustomerDto(
@@ -58,8 +58,8 @@ public class CustomerDto {
         customer.getLinkToFolderWithDocuments(),
         customer.getIsActive(),
         customer.getIsBlacklisted(),
-        customer.getAccounts() == null
+        customer.getLoanAccounts() == null
             ? new ArrayList<>()
-            : customer.getAccounts().stream().map(AccountDto::from).collect(Collectors.toList()));
+            : customer.getLoanAccounts().stream().map(LoanAccountDto::from).collect(Collectors.toList()));
   }
 }

@@ -1,6 +1,6 @@
 package com.blms.testutils;
 
-import com.blms.account.AccountDto;
+import com.blms.account.loan.LoanAccountDto;
 import com.blms.customer.Customer;
 import com.blms.customer.CustomerDto;
 import java.util.ArrayList;
@@ -24,8 +24,13 @@ public class TestUtils {
         .build();
   }
 
-  public static AccountDto getAccountDto() {
-    return AccountDto.builder().number(5l).customerId(getCustomer().getId().toString()).build();
+  public static LoanAccountDto getAccountDto() {
+    return LoanAccountDto.builder()
+        .number(5l)
+        .customerId(getCustomer().getId().toString())
+        .initialAmount(1234567l)
+        .initialDurationInMonths(24)
+        .build();
   }
 
   public static Customer getCustomer() {

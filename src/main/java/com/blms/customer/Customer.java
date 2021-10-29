@@ -1,7 +1,7 @@
 package com.blms.customer;
 
 import com.blms.BlmsBaseEntity;
-import com.blms.account.Account;
+import com.blms.account.loan.LoanAccount;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -60,7 +60,7 @@ public class Customer implements BlmsBaseEntity {
 
   @OneToMany
   @JoinColumn(name = "customer_id")
-  private List<Account> accounts;
+  private List<LoanAccount> loanAccounts;
 
   public static Customer from(CustomerDto customerDto) {
     return new Customer(
@@ -77,6 +77,6 @@ public class Customer implements BlmsBaseEntity {
         customerDto.getIsBlacklisted() != null && customerDto.getIsBlacklisted(),
         customerDto.getAccounts() == null
             ? null
-            : customerDto.getAccounts().stream().map(Account::from).collect(Collectors.toList()));
+            : customerDto.getAccounts().stream().map(LoanAccount::from).collect(Collectors.toList()));
   }
 }
