@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'com.diffplug.spotless' version '5.0.0'
 }
 
 sourceCompatibility=11
@@ -35,3 +36,11 @@ test {
 application {
     mainClass = 'com.blms.BlmsApp'
 }
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
+}
+
+compileJava.dependsOn 'spotlessApply'

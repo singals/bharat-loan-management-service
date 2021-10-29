@@ -1,8 +1,5 @@
 package com.blms.account.loan;
 
-import com.blms.account.loan.LoanAccount;
-import com.blms.account.loan.LoanAccountDAO;
-import com.blms.account.loan.LoanAccountDto;
 import com.blms.customer.Customer;
 import com.blms.customer.CustomerDAO;
 import io.dropwizard.hibernate.UnitOfWork;

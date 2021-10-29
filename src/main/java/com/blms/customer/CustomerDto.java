@@ -60,6 +60,8 @@ public class CustomerDto {
         customer.getIsBlacklisted(),
         customer.getLoanAccounts() == null
             ? new ArrayList<>()
-            : customer.getLoanAccounts().stream().map(LoanAccountDto::from).collect(Collectors.toList()));
+            : customer.getLoanAccounts().stream()
+                .map(LoanAccountDto::from)
+                .collect(Collectors.toList()));
   }
 }

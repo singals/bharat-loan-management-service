@@ -52,11 +52,11 @@ class LoanAccountResourceTest {
     LoanAccountDto suppliedLoanAccountDto = TestUtils.getAccountDto();
     suppliedLoanAccountDto.setId(UUID.randomUUID().toString());
     suppliedLoanAccountDto.setCustomerId(customer.getId().toString());
-    suppliedLoanAccountDto.setCreatedAt(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+    suppliedLoanAccountDto.setCreatedAt(
+        LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
     LoanAccount loanAccount = LoanAccount.from(suppliedLoanAccountDto);
     when(LOAN_ACCOUNT_DAO.create(eq(loanAccount))).thenReturn(loanAccount);
-    when(CUSTOMER_DAO.getById(loanAccount.getCustomerId()))
-        .thenReturn(Optional.of(customer));
+    when(CUSTOMER_DAO.getById(loanAccount.getCustomerId())).thenReturn(Optional.of(customer));
     when(LOAN_ACCOUNT_DAO.getById(eq(loanAccount.getId()))).thenReturn(Optional.of(loanAccount));
     Response response =
         RESOURCES
@@ -81,8 +81,7 @@ class LoanAccountResourceTest {
     suppliedLoanAccountDto.setId(UUID.randomUUID().toString());
     suppliedLoanAccountDto.setCustomerId(customer.getId().toString());
     LoanAccount loanAccount = LoanAccount.from(suppliedLoanAccountDto);
-    when(CUSTOMER_DAO.getById(loanAccount.getCustomerId()))
-        .thenReturn(Optional.of(customer));
+    when(CUSTOMER_DAO.getById(loanAccount.getCustomerId())).thenReturn(Optional.of(customer));
     doThrow(RuntimeException.class).when(LOAN_ACCOUNT_DAO).create(eq(loanAccount));
 
     Response response =
@@ -103,8 +102,7 @@ class LoanAccountResourceTest {
     suppliedLoanAccountDto.setId(UUID.randomUUID().toString());
     suppliedLoanAccountDto.setCustomerId(customer.getId().toString());
     LoanAccount loanAccount = LoanAccount.from(suppliedLoanAccountDto);
-    when(CUSTOMER_DAO.getById(loanAccount.getCustomerId()))
-        .thenReturn(Optional.of(customer));
+    when(CUSTOMER_DAO.getById(loanAccount.getCustomerId())).thenReturn(Optional.of(customer));
 
     Response response =
         RESOURCES
@@ -123,8 +121,7 @@ class LoanAccountResourceTest {
     suppliedLoanAccountDto.setId(UUID.randomUUID().toString());
     suppliedLoanAccountDto.setCustomerId(customer.getId().toString());
     LoanAccount loanAccount = LoanAccount.from(suppliedLoanAccountDto);
-    when(CUSTOMER_DAO.getById(loanAccount.getCustomerId()))
-        .thenReturn(Optional.of(customer));
+    when(CUSTOMER_DAO.getById(loanAccount.getCustomerId())).thenReturn(Optional.of(customer));
 
     Response response =
         RESOURCES

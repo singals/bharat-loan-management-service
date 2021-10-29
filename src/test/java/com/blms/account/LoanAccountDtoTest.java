@@ -35,10 +35,7 @@ class LoanAccountDtoTest {
     customer.setId(null);
     LoanAccountDto account = LoanAccountDto.builder().number(7l).build();
 
-
     String json = mapper.writeValueAsString(account);
-    assertEquals(
-        "{\"number\":7}",
-        json);
+    assertEquals("{\"number\":7}", json);
   }
 }

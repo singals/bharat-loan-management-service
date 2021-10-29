@@ -77,6 +77,8 @@ public class Customer implements BlmsBaseEntity {
         customerDto.getIsBlacklisted() != null && customerDto.getIsBlacklisted(),
         customerDto.getAccounts() == null
             ? null
-            : customerDto.getAccounts().stream().map(LoanAccount::from).collect(Collectors.toList()));
+            : customerDto.getAccounts().stream()
+                .map(LoanAccount::from)
+                .collect(Collectors.toList()));
   }
 }
