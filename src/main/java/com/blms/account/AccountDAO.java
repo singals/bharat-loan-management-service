@@ -1,6 +1,7 @@
 package com.blms.account;
 
 import io.dropwizard.hibernate.AbstractDAO;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.hibernate.SessionFactory;
@@ -17,5 +18,9 @@ public class AccountDAO extends AbstractDAO<Account> {
 
   public Optional<Account> getById(UUID id) {
     return Optional.ofNullable(get(id));
+  }
+
+  public List<Account> getAll(){
+    return list(namedTypedQuery("Account.findAll"));
   }
 }

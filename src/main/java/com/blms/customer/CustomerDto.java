@@ -1,9 +1,13 @@
 package com.blms.customer;
 
+import com.blms.account.AccountDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,6 +43,8 @@ public class CustomerDto {
 
   private Boolean isBlacklisted;
 
+  private List<AccountDto> accounts;
+
   public static CustomerDto from(Customer customer) {
     return new CustomerDto(
         customer.getId().toString(),
@@ -51,6 +57,9 @@ public class CustomerDto {
         customer.getTemporaryAddress(),
         customer.getLinkToFolderWithDocuments(),
         customer.getIsActive(),
-        customer.getIsBlacklisted());
+        customer.getIsBlacklisted(),
+        customer.getAccounts() == null
+            ? new ArrayList<>()
+            : customer.getAccounts().stream().map(AccountDto::from).collect(Collectors.toList()));
   }
 }

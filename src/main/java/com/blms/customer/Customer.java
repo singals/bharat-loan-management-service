@@ -1,12 +1,17 @@
 package com.blms.customer;
 
 import com.blms.BlmsBaseEntity;
+import com.blms.account.Account;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -53,6 +58,10 @@ public class Customer implements BlmsBaseEntity {
   @Column(name = "is_blacklisted")
   private Boolean isBlacklisted;
 
+  @OneToMany
+  @JoinColumn(name = "customer_id")
+  private List<Account> accounts;
+
   public static Customer from(CustomerDto customerDto) {
     return new Customer(
         customerDto.getId() == null ? UUID.randomUUID() : UUID.fromString(customerDto.getId()),
@@ -65,6 +74,9 @@ public class Customer implements BlmsBaseEntity {
         customerDto.getTemporaryAddress(),
         customerDto.getLinkToFolderWithDocuments(),
         customerDto.getIsActive() == null || customerDto.getIsActive(),
-        customerDto.getIsBlacklisted() != null && customerDto.getIsBlacklisted());
+        customerDto.getIsBlacklisted() != null && customerDto.getIsBlacklisted(),
+        customerDto.getAccounts() == null
+            ? null
+            : customerDto.getAccounts().stream().map(Account::from).collect(Collectors.toList()));
   }
 }

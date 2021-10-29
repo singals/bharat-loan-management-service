@@ -26,7 +26,7 @@ class AccountTest {
     account = Account.from(accountDto);
     assertNotNull(account.getId());
     assertEquals(accountDto.getNumber(), account.getNumber());
-    assertEquals(Customer.from(accountDto.getHolder()), account.getCustomer());
+    assertEquals(accountDto.getCustomerId(), account.getCustomerId().toString());
   }
 
   @Test

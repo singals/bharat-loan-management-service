@@ -32,15 +32,14 @@ public class Account implements BlmsBaseEntity {
   @Generated(GenerationTime.INSERT)
   private Long number;
 
-  @ManyToOne
-  @JoinColumn(name = "customer_id")
-  private Customer customer;
+  @Column(name = "customer_id")
+  private UUID customerId;
 
   public static Account from(AccountDto account) {
     return Account.builder()
         .id(account.getId() == null ? UUID.randomUUID() : UUID.fromString(account.getId()))
         .number(account.getNumber())
-        .customer(Customer.from(account.getHolder()))
+        .customerId(UUID.fromString(account.getCustomerId()))
         .build();
   }
 }

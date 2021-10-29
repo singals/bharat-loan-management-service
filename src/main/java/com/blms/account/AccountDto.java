@@ -19,13 +19,13 @@ import lombok.NoArgsConstructor;
 public class AccountDto {
   private String id;
   private Long number;
-  private CustomerDto holder;
+  private String customerId;
 
   public static AccountDto from(Account account) {
     return AccountDto.builder()
         .id(account.getId().toString())
         .number(account.getNumber())
-        .holder(CustomerDto.from(account.getCustomer()))
+        .customerId(account.getCustomerId().toString())
         .build();
   }
 }

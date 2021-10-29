@@ -9,6 +9,8 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.blms.account.Account;
+import com.blms.account.AccountDto;
 import com.blms.testutils.TestUtils;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 import io.dropwizard.testing.junit5.ResourceExtension;
@@ -72,6 +74,8 @@ class CustomerResourceTest {
   @Test
   void testGetAllCustomers() {
     Customer customer = TestUtils.getCustomer();
+    AccountDto accountDto = TestUtils.getAccountDto();
+    customer.setAccounts(Arrays.asList(Account.from(accountDto)));
     Customer blacklistedCustomer = TestUtils.getBlacklistedCustomer();
     when(CUSTOMER_DAO.getAll()).thenReturn(Arrays.asList(customer, blacklistedCustomer));
     Response response =

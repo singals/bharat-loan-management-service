@@ -3,6 +3,7 @@ package com.blms.testutils;
 import com.blms.account.AccountDto;
 import com.blms.customer.Customer;
 import com.blms.customer.CustomerDto;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class TestUtils {
@@ -19,11 +20,12 @@ public class TestUtils {
         .linkToFolderWithDocuments("link-to-folder-in-s3-bucket")
         .isActive(true)
         .isBlacklisted(false)
+        .accounts(new ArrayList<>())
         .build();
   }
 
   public static AccountDto getAccountDto() {
-    return AccountDto.builder().number(5l).holder(CustomerDto.from(getCustomer())).build();
+    return AccountDto.builder().number(5l).customerId(getCustomer().getId().toString()).build();
   }
 
   public static Customer getCustomer() {

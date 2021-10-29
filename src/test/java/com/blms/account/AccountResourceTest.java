@@ -9,6 +9,7 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.blms.customer.Customer;
 import com.blms.customer.CustomerDAO;
 import com.blms.testutils.TestUtils;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
@@ -41,12 +42,14 @@ class AccountResourceTest {
 
   @Test
   void testCreateAccount() {
+    Customer customer = TestUtils.getCustomer();
     AccountDto suppliedAccountDto = TestUtils.getAccountDto();
     suppliedAccountDto.setId(UUID.randomUUID().toString());
+    suppliedAccountDto.setCustomerId(customer.getId().toString());
     Account account = Account.from(suppliedAccountDto);
     when(ACCOUNT_DAO.create(eq(account))).thenReturn(account);
-    when(CUSTOMER_DAO.getById(account.getCustomer().getId()))
-        .thenReturn(Optional.of(account.getCustomer()));
+    when(CUSTOMER_DAO.getById(account.getCustomerId()))
+        .thenReturn(Optional.of(customer));
     when(ACCOUNT_DAO.getById(eq(account.getId()))).thenReturn(Optional.of(account));
     Response response =
         RESOURCES
@@ -59,17 +62,19 @@ class AccountResourceTest {
     suppliedAccountDto.setId(actualAccountDto.getId());
     assertEquals(suppliedAccountDto, actualAccountDto);
     verify(ACCOUNT_DAO).create(eq(account));
-    verify(CUSTOMER_DAO).getById(eq(account.getCustomer().getId()));
+    verify(CUSTOMER_DAO).getById(eq(account.getCustomerId()));
     verify(ACCOUNT_DAO).getById(eq(account.getId()));
   }
 
   @Test
   void testCreateAccountWhenDaoThrowsError() {
+    Customer customer = TestUtils.getCustomer();
     AccountDto suppliedAccountDto = TestUtils.getAccountDto();
     suppliedAccountDto.setId(UUID.randomUUID().toString());
+    suppliedAccountDto.setCustomerId(customer.getId().toString());
     Account account = Account.from(suppliedAccountDto);
-    when(CUSTOMER_DAO.getById(account.getCustomer().getId()))
-        .thenReturn(Optional.of(account.getCustomer()));
+    when(CUSTOMER_DAO.getById(account.getCustomerId()))
+        .thenReturn(Optional.of(customer));
     doThrow(RuntimeException.class).when(ACCOUNT_DAO).create(eq(account));
 
     Response response =
@@ -79,14 +84,19 @@ class AccountResourceTest {
             .post(Entity.entity(suppliedAccountDto, MediaType.APPLICATION_JSON_TYPE));
 
     assertEquals(Status.INTERNAL_SERVER_ERROR, response.getStatusInfo());
-    verify(CUSTOMER_DAO).getById(eq(account.getCustomer().getId()));
+    verify(CUSTOMER_DAO).getById(eq(account.getCustomerId()));
   }
 
   @Test
   void testCreateAccountWhenCustomerAccountIsNotActive() {
+    Customer customer = TestUtils.getCustomer();
+    customer.setIsActive(false);
     AccountDto suppliedAccountDto = TestUtils.getAccountDto();
-    suppliedAccountDto.getHolder().setIsActive(false);
     suppliedAccountDto.setId(UUID.randomUUID().toString());
+    suppliedAccountDto.setCustomerId(customer.getId().toString());
+    Account account = Account.from(suppliedAccountDto);
+    when(CUSTOMER_DAO.getById(account.getCustomerId()))
+        .thenReturn(Optional.of(customer));
 
     Response response =
         RESOURCES
@@ -99,9 +109,14 @@ class AccountResourceTest {
 
   @Test
   void testCreateAccountWhenCustomerAccountIsBlacklisted() {
+    Customer customer = TestUtils.getCustomer();
+    customer.setIsBlacklisted(true);
     AccountDto suppliedAccountDto = TestUtils.getAccountDto();
-    suppliedAccountDto.getHolder().setIsBlacklisted(true);
     suppliedAccountDto.setId(UUID.randomUUID().toString());
+    suppliedAccountDto.setCustomerId(customer.getId().toString());
+    Account account = Account.from(suppliedAccountDto);
+    when(CUSTOMER_DAO.getById(account.getCustomerId()))
+        .thenReturn(Optional.of(customer));
 
     Response response =
         RESOURCES
