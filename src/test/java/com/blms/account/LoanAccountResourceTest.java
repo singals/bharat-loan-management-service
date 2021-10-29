@@ -110,7 +110,7 @@ class LoanAccountResourceTest {
             .request(MediaType.APPLICATION_JSON_TYPE)
             .post(Entity.entity(suppliedLoanAccountDto, MediaType.APPLICATION_JSON_TYPE));
 
-    assertEquals(Status.PRECONDITION_FAILED, response.getStatusInfo());
+    assertEquals(Status.FORBIDDEN, response.getStatusInfo());
   }
 
   @Test
@@ -129,6 +129,6 @@ class LoanAccountResourceTest {
             .request(MediaType.APPLICATION_JSON_TYPE)
             .post(Entity.entity(suppliedLoanAccountDto, MediaType.APPLICATION_JSON_TYPE));
 
-    assertEquals(Status.PRECONDITION_FAILED, response.getStatusInfo());
+    assertEquals(Status.FORBIDDEN, response.getStatusInfo());
   }
 }

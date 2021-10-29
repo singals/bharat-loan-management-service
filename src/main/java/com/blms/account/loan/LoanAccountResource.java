@@ -14,7 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 @Path("/loan-accounts")
 public class LoanAccountResource {
@@ -35,9 +35,9 @@ public class LoanAccountResource {
     Customer customer =
         customerDAO
             .getById(UUID.fromString(loanAccountDto.getCustomerId()))
-            .orElseThrow(() -> new WebApplicationException(Response.status(412).build()));
+            .orElseThrow(() -> new WebApplicationException(Status.PRECONDITION_FAILED));
     if (!customer.getIsActive() || customer.getIsBlacklisted()) {
-      throw new WebApplicationException(Response.status(412).build());
+      throw new WebApplicationException(Status.FORBIDDEN);
     }
     LoanAccount loanAccount = LoanAccount.from(loanAccountDto);
     loanAccountDAO.create(loanAccount);
