@@ -1,8 +1,7 @@
-package com.blms.resources;
+package com.blms.ping;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.blms.ping.PingResource;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 import io.dropwizard.testing.junit5.ResourceExtension;
 import javax.ws.rs.core.MediaType;

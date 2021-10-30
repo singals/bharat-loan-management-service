@@ -2,10 +2,6 @@ package com.blms.loan.simulator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.blms.loan.simulator.LoanMonthlySimulation;
-import com.blms.loan.simulator.LoanSimulationRequestDto;
-import com.blms.loan.simulator.LoanSimulationResource;
-import com.blms.loan.simulator.LoanSimulationResponseDto;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;

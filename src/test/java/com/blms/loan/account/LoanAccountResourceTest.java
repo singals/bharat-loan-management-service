@@ -11,10 +11,6 @@ import static org.mockito.Mockito.when;
 
 import com.blms.customer.Customer;
 import com.blms.customer.CustomerDAO;
-import com.blms.loan.account.LoanAccount;
-import com.blms.loan.account.LoanAccountDAO;
-import com.blms.loan.account.LoanAccountDto;
-import com.blms.loan.account.LoanAccountResource;
 import com.blms.testutils.TestUtils;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 import io.dropwizard.testing.junit5.ResourceExtension;
