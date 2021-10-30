@@ -8,7 +8,7 @@ import java.util.UUID;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-class AccountTest {
+class LoanAccountTest {
 
   private LoanAccountDto loanAccountDto;
   private LoanAccount loanAccount;
@@ -20,7 +20,7 @@ class AccountTest {
   }
 
   @Test
-  void testAccountFromDto() {
+  void testLoanAccountFromDto() {
     loanAccountDto = TestUtils.getAccountDto();
     loanAccount = LoanAccount.from(loanAccountDto);
     assertNotNull(loanAccount.getId());
@@ -29,7 +29,7 @@ class AccountTest {
   }
 
   @Test
-  void testAccountFromDtoWhenIdIsProvided() {
+  void testLoanAccountFromDtoWhenIdIsProvided() {
     String id = UUID.randomUUID().toString();
     loanAccountDto = TestUtils.getAccountDto();
     loanAccountDto.setId(id);
