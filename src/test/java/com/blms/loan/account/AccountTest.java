@@ -1,10 +1,10 @@
-package com.blms.account;
+package com.blms.loan.account;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import com.blms.account.loan.LoanAccount;
-import com.blms.account.loan.LoanAccountDto;
+import com.blms.loan.account.LoanAccount;
+import com.blms.loan.account.LoanAccountDto;
 import com.blms.testutils.TestUtils;
 import java.util.UUID;
 import org.junit.jupiter.api.AfterEach;

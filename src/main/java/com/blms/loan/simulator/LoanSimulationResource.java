@@ -1,4 +1,4 @@
-package com.blms.simulator.loan;
+package com.blms.loan.simulator;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

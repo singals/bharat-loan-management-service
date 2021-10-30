@@ -1,9 +1,10 @@
-package com.blms.simulator.loan;
+package com.blms.loan.simulator;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,10 +16,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
 @JsonNaming(SnakeCaseStrategy.class)
-public class LoanMonthlySimulation {
-  Integer monthNumber;
-  Double openingBalance;
-  Double currentMonthInterest;
-  Long emi;
-  Double closingBalance;
+public class LoanSimulationResponseDto {
+  private Long amount;
+  private Float rateOfInterest;
+  private Integer durationInMonths;
+  private Long emi;
+  private List<LoanMonthlySimulation> loanMonthlySimulations;
 }

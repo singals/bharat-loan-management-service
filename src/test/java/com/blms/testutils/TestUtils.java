@@ -1,8 +1,8 @@
 package com.blms.testutils;
 
-import com.blms.account.loan.LoanAccountDto;
 import com.blms.customer.Customer;
 import com.blms.customer.CustomerDto;
+import com.blms.loan.account.LoanAccountDto;
 import java.util.ArrayList;
 import java.util.UUID;
 

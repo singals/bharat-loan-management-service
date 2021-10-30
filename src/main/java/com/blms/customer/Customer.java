@@ -1,7 +1,7 @@
 package com.blms.customer;
 
 import com.blms.BlmsBaseEntity;
-import com.blms.account.loan.LoanAccount;
+import com.blms.loan.account.LoanAccount;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;

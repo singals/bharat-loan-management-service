@@ -1,8 +1,8 @@
 package com.blms.config;
 
 import com.blms.BlmsConfig;
-import com.blms.account.loan.LoanAccount;
 import com.blms.customer.Customer;
+import com.blms.loan.account.LoanAccount;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.db.PooledDataSourceFactory;

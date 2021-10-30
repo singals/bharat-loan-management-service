@@ -1,4 +1,4 @@
-package com.blms.account.loan;
+package com.blms.loan.account;
 
 import com.blms.BlmsBaseEntity;
 import java.sql.Timestamp;

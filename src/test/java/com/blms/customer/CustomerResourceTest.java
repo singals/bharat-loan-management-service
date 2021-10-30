@@ -9,8 +9,8 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.blms.account.loan.LoanAccount;
-import com.blms.account.loan.LoanAccountDto;
+import com.blms.loan.account.LoanAccount;
+import com.blms.loan.account.LoanAccountDto;
 import com.blms.testutils.TestUtils;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 import io.dropwizard.testing.junit5.ResourceExtension;

@@ -1,4 +1,4 @@
-package com.blms.account.loan;
+package com.blms.loan.account;
 
 import io.dropwizard.hibernate.AbstractDAO;
 import java.util.List;

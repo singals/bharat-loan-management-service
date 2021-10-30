@@ -1,9 +1,9 @@
-package com.blms.account;
+package com.blms.loan.account;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.blms.account.loan.LoanAccountDto;
 import com.blms.customer.Customer;
+import com.blms.loan.account.LoanAccountDto;
 import com.blms.testutils.TestUtils;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;

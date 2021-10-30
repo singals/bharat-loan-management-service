@@ -1,4 +1,4 @@
-package com.blms.simulator.loan;
+package com.blms.loan.simulator;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

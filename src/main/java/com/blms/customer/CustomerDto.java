@@ -1,6 +1,6 @@
 package com.blms.customer;
 
-import com.blms.account.loan.LoanAccountDto;
+import com.blms.loan.account.LoanAccountDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;

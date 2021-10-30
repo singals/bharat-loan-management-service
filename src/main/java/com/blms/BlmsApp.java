@@ -1,13 +1,13 @@
 package com.blms;
 
-import com.blms.account.loan.LoanAccountDAO;
-import com.blms.account.loan.LoanAccountResource;
 import com.blms.config.DbBundle;
 import com.blms.customer.CustomerDAO;
 import com.blms.customer.CustomerResource;
 import com.blms.health.BlmsHealthCheck;
+import com.blms.loan.account.LoanAccountDAO;
+import com.blms.loan.account.LoanAccountResource;
+import com.blms.loan.simulator.LoanSimulationResource;
 import com.blms.ping.PingResource;
-import com.blms.simulator.loan.LoanSimulationResource;
 import io.dropwizard.Application;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;

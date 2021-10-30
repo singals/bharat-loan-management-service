@@ -1,4 +1,4 @@
-package com.blms.account.loan;
+package com.blms.loan.account;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
