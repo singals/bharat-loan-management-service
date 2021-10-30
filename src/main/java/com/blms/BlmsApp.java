@@ -7,6 +7,7 @@ import com.blms.customer.CustomerDAO;
 import com.blms.customer.CustomerResource;
 import com.blms.health.BlmsHealthCheck;
 import com.blms.ping.PingResource;
+import com.blms.simulator.loan.LoanSimulationResource;
 import io.dropwizard.Application;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;
@@ -50,6 +51,7 @@ public class BlmsApp extends Application<BlmsConfig> {
       env.jersey().register(new PingResource());
       env.jersey().register(new CustomerResource(customerDAO));
       env.jersey().register(new LoanAccountResource(loanAccountDAO, customerDAO));
+      env.jersey().register(new LoanSimulationResource());
     } catch (Exception ex) {
       LOGGER.error("Unhandled error", ex);
     }
